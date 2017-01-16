@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reference Data Types</title>
+        <script>
+            var student_array = ["Maddy", "Janiece", "William", "Christine", "Henry"];
+            console.log("Third Student:", student_array[2]);
+            console.log("Full Array:", student_array);
+            console.log("Length:", student_array.length);
+            student_array.push("Jack", "Daniel");
+            console.log("New Length:", student_array.length);
+            console.log("New Full Array:", student_array);
+
+            var student = {};
+            student.firstName = "Daniel";
+            student.lastName = "Jackson";
+            student.age = 32;
+            student.school = "Stargate Institute";
+            student.questionList = [];
+            student.hasQuestion = false;
+
+            student.greeting = function () {
+                return "Hello, my name is " + this.firstName;
+            };
+            student.aboutMe = function () {
+                return "My full name is " + this.firstName + " " + this.lastName + ", I am " + this.age + " years old and I am a student at " + student.school + ".";
+            };
+            student.askQuestion = function (question) {
+                student.questionList.push(question);
+                student.hasQuestion = true;
+                return "A question has been added to your list.";
+            };
+            student.answerQuestion = function () {
+                if(student.hasQuestion === true) {
+                    student.hasQuestion = false;
+                    return student.questionList[student.questionList.length - 1];
+                }
+                else {
+                    return "You have no pending questions.";
+                }
+            };
+
+            console.log("Greeting function:", student.greeting());
+            console.log("About Me function:", student.aboutMe());
+            console.log("Answer Question function:", student.answerQuestion());
+            console.log("Ask Question function:", student.askQuestion("What is your name?"));
+            console.log("Ask Question function:", student.askQuestion("What is your quest?"));
+            console.log("Ask Question function:", student.askQuestion("What is your favorite color?"));
+            console.log("Answer Question function:", student.answerQuestion());
+            console.log("Question List:", student.questionList);
+            console.log("Here is my student object " + student);
+            console.log("Here is my student object", student);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
