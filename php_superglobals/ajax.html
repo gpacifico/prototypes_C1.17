@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PHP ajax</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#send_ajax").click(function(){
+                    $.ajax({
+                        url: "index.php",
+                        method: "post",
+                        data: {
+                            check_box : $("#check_box").val(),
+                            text_sent : $("#text_area").val()
+                        },
+                        dataType: "text",
+                        success: function(response){
+                            console.log("Ajax call mission completed", response);
+                        }
+                    })
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form action="index.php">
+            <input id="check_box" type="checkbox" value="howdy">
+            <textarea id="text_area"></textarea><br>
+            <button id="send_ajax" type="button">Send Ajax Call</button>
+        </form>
+    </body>
+</html>
