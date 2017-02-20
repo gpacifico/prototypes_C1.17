@@ -21,11 +21,42 @@ function handleRequest(request, response) {
             })
         }
         else {
-            response.writeHead(200, {
-                'Content-Type': 'text/html',
-                'Gwen_likes': 'ponies'
-            });
-            response.end(data);
+            var chocolate_pony_extension = chocolate_pony_url.substr(chocolate_pony_url.lastIndexOf('.'));
+            console.log('extension', chocolate_pony_extension);
+            //response.setHeader('Gwen_likes', 'cereal');
+            if (chocolate_pony_extension === '.html') {
+                response.writeHead(200, {
+                    'Content-Type': 'text/html',
+                    'Gwen_likes': 'cereal'
+                });
+                response.end(data);
+            }
+            else if (chocolate_pony_extension === '.jpg') {
+                response.writeHead(200, {
+                    'Content-Type': 'image/jpeg',
+                    'Gwen_likes': 'milk'
+                });
+                response.end(data);
+            }
+            else if (chocolate_pony_extension === '.css') {
+                response.writeHead(200, {
+                    'Content-Type': 'text/css',
+                    'Gwen_likes': 'bowls'
+                });
+                response.end(data);
+            }
+            else {
+                response.writeHead(200, {
+                    'Content-Type': 'text/plain',
+                    'Gwen_likes': 'spoons'
+                });
+                response.end(data);
+            }
+            // response.writeHead(200, {
+            //     'Content-Type': 'text/html',
+            //     'Gwen_likes': 'ponies'
+            // });
+            // response.end(data);
         }
         // response.end(data);
         // console.log(data);
