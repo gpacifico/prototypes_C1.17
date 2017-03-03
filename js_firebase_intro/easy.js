@@ -24,26 +24,48 @@ $(document).ready(function(){
 });
 
 // Add config data
+var config = {
+    apiKey: "AIzaSyBkJhX9Z_DXitSG2iWHpWS0pE4eduJ9LXw",
+    authDomain: "lfzchallenge-ad20a.firebaseapp.com",
+    databaseURL: "https://lfzchallenge-ad20a.firebaseio.com",
+    storageBucket: "lfzchallenge-ad20a.appspot.com",
+    messagingSenderId: "435887237677"
+};
 
 // Init firebase
+firebase.initializeApp(config);
 
 // Create firebase ref
+var fbRef = firebase.database();
 
 // Create event listener for the students node in your database
+fbRef.ref('students').on('value', function(snapshot){
+    updateDom(snapshot.val());
+});
 
 // Complete the addStudent function
 function addStudent(sid, sname, course, grade){
-
+    fbRef.ref('students').push({
+        student_id:     sid,
+        student_name:   sname,
+        course:         course,
+        grade:          grade
+    });
 }
 
 // complete the delete function
 function deleteStudent(key, ele){
-
+    fbRef.ref('students/' + key).remove();
 }
 
 // complete the update function
 function updateStudent(id){
-
+    var updates = {};
+    updates['students/' + id + '/student_id'] = $('#sid').val();
+    updates['students/' + id + '/student_name'] = $('#sname').val();
+    updates['students/' + id + '/course'] = $('#course').val();
+    updates['students/' + id + '/grade'] = $('#grade').val();
+    fbRef.ref().update(updates);
 }
 
 function updateDom(d){
