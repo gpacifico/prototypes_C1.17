@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>js_regex</title>
+        <script>
+            var fs1a = /e/;
+            var fs1b = /e/gi;
+            var fs1c = /st[ai]r/g;
+
+            var test1 = "stir the star";
+            var test2 = "stim the stat";
+            var test3 = "stir the stat";
+            var test4 = "stim the star";
+
+            console.log(test1.match(fs1c));
+            console.log(test2.match(fs1c));
+            console.log(test3.match(fs1c));
+            console.log(test4.match(fs1c));
+
+            var phoneNumber = /[1]?[-]?[ ]?[\(]?[0-9]{3}[\)]?[ ]*[-]?[0-9]{3}[ ]*[-]?[0-9]{4}/g;
+            console.log("phone number that should pass: 1-818-555-1212", phoneNumber.test('1-818-555-1212'));
+            console.log("phone number that should fail: 818?5551212", phoneNumber.test("818?5551212"));
+
+            var passwordRegex = /^([A-Za-z])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{5,31}$/g;
+            console.log("password that should pass: Pa5sWoRd", passwordRegex.test("Pa5sWoRd"));
+            console.log("password that should fail: ill#g@l_characters", passwordRegex.test("ill#g@l_characters"));
+        </script>
+    </head>
+    <body>
+        <h1>JavaScript - Regular Expressions</h1>
+    </body>
+</html>
